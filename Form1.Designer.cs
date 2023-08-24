@@ -1,6 +1,6 @@
 ﻿namespace tua_tell_us_Josie
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.
