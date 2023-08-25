@@ -11,7 +11,7 @@ namespace tua_tell_us_Josie
     public partial class MainForm : Form
     {
 
-        private Form2 form2;
+        //private Form2 form2;
 
         #region SETTINGS
         String m_ProductVersion = "1.0.0";
@@ -103,14 +103,14 @@ namespace tua_tell_us_Josie
             this.KeyPreview = true;
             this.KeyPress += new KeyPressEventHandler(MainFormKeyDown);
 
-            //timer settins and handlers
+            //timer settings and handlers
             FadeTimer.Interval = 5;
             FadeTimer.Tick += FadeTimerTick;
             WaitTimer.Interval = 1000;
             WaitTimer.Tick += WaitTimerTick;
                        
             //create a reference to form2
-            form2 = new Form2();
+            //form2 = new Form2();
 
             //chekc for a second screen
             //ScreenCheck();
@@ -313,15 +313,6 @@ namespace tua_tell_us_Josie
             MakeButtonTextFit(f_button);
             RBtnPnl.Controls.Add(RResetBtn);
 
-            //int RBtnWidth = (MainFormScreenSize.Width / 2) - 80;
-            //int RBtnHeight = (int)(MainFormScreenSize.Height * .40) - 80;
-            //RBtn.SetBounds((MainFormScreenSize.Width / 2) + 30, (MainFormScreenSize.Height - (RBtnHeight + 20)), RBtnWidth, RBtnHeight);
-            //RBtn.BackColor = RBtnClr;
-            //RBtn.Visible = true;   
-            //RBtn.FlatStyle= FlatStyle.Flat;
-            //RBtn.FlatAppearance.BorderSize = 0;
-            //this.Controls.Add(RBtn);
-
 
         }
         #endregion
@@ -440,11 +431,6 @@ namespace tua_tell_us_Josie
         //}
 
 
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
         #endregion
 
         #region FUNCTIONS
@@ -477,7 +463,6 @@ namespace tua_tell_us_Josie
         }
 
         #endregion
-
 
 
         #region CLICK EVENTS
@@ -644,8 +629,8 @@ namespace tua_tell_us_Josie
 
     }
 
-    public class Form2 : Form
-    {
+    //public class Form2 : Form
+    //{
 
-    }
+    //}
 }
