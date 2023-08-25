@@ -37,8 +37,7 @@
             ClientSize = new Size(800, 450);
             Name = "Form1";
             Text = "Form1";
-            //code below comented out by jw - there is no longer a form load event
-            //Load += Form1_Load;
+            Load += Form1_Load;
             ResumeLayout(false);
         }
 

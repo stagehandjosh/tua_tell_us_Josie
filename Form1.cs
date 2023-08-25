@@ -11,7 +11,7 @@ namespace tua_tell_us_Josie
     public partial class MainForm : Form
     {
 
-        //private Form2 form2;
+        private Form2 form2;
 
         #region SETTINGS
         String m_ProductVersion = "1.0.0";
@@ -103,14 +103,14 @@ namespace tua_tell_us_Josie
             this.KeyPreview = true;
             this.KeyPress += new KeyPressEventHandler(MainFormKeyDown);
 
-            //timer settings and handlers
+            //timer settins and handlers
             FadeTimer.Interval = 5;
             FadeTimer.Tick += FadeTimerTick;
             WaitTimer.Interval = 1000;
             WaitTimer.Tick += WaitTimerTick;
                        
             //create a reference to form2
-            //form2 = new Form2();
+            form2 = new Form2();
 
             //chekc for a second screen
             //ScreenCheck();
@@ -431,6 +431,11 @@ namespace tua_tell_us_Josie
         //}
 
 
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region FUNCTIONS
@@ -463,6 +468,7 @@ namespace tua_tell_us_Josie
         }
 
         #endregion
+
 
 
         #region CLICK EVENTS
@@ -629,8 +635,8 @@ namespace tua_tell_us_Josie
 
     }
 
-    //public class Form2 : Form
-    //{
+    public class Form2 : Form
+    {
 
-    //}
+    }
 }
