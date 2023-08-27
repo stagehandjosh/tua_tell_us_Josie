@@ -79,6 +79,26 @@ namespace tua_tell_us_Josie.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap new_quit {
+            get {
+                object obj = ResourceManager.GetObject("new quit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon new_quit_button {
+            get {
+                object obj = ResourceManager.GetObject("new quit button", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream piano_a_A_major {
@@ -93,6 +113,26 @@ namespace tua_tell_us_Josie.Properties {
         internal static System.IO.UnmanagedMemoryStream piano_d_D_major {
             get {
                 return ResourceManager.GetStream("piano-d_D_major", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap quit_x {
+            get {
+                object obj = ResourceManager.GetObject("quit_x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap really_new_quit_button {
+            get {
+                object obj = ResourceManager.GetObject("really new quit button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

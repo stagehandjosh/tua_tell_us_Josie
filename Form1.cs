@@ -41,6 +41,7 @@ namespace tua_tell_us_Josie
         //Font LabelSmallFnt = new Font("arial", 15.0F, FontStyle.Bold, GraphicsUnit.Pixel);
         Font LabelBigFnt = new Font("arial", 20.0F, FontStyle.Bold, GraphicsUnit.Pixel);
         Font LabelMedFnt = new Font("arial", 18.0F, FontStyle.Bold, GraphicsUnit.Pixel);
+        Font QuitBtnFnt = new Font("arial", 24.0F, FontStyle.Bold, GraphicsUnit.Pixel);
         Font BtnStartFnt = new Font("arial", 6.0F, FontStyle.Bold, GraphicsUnit.Pixel);
 
         #endregion
@@ -57,7 +58,10 @@ namespace tua_tell_us_Josie
         Label AnswerLbl = new Label();
 
         PictureBox ApplicationIconPb = new PictureBox();
+        PictureBox QuitBtnPB = new PictureBox();
 
+        Button QuitBtn = new Button();
+        Button SettingsBtn = new Button();
         Button LBtn = new Button();
         Button LChangeTextBtn = new Button();
         Button LResetBtn = new Button();
@@ -83,6 +87,7 @@ namespace tua_tell_us_Josie
 
             //add handlers
             ContentPnl.Paint += ContentPnlPaint;
+            QuitBtn.Paint += QuitBtnPaint;
             LBtnPnl.Paint += LBtnPnlPaint;
             LBtn.Paint += LBtnPaint;
             LChangeTextBtn.Paint += LChangeTextBtnPaint;
@@ -92,6 +97,8 @@ namespace tua_tell_us_Josie
             RChangeTextBtn.Paint += RChangeTextBtnPaint;
             RResetBtn.Paint += RResetBtnPaint;
 
+            QuitBtn.Click += QuitBtnClick;
+            SettingsBtn.Click += SettingsBtnClick;
             LBtn.Click += LBtnClick;
             LChangeTextBtn.Click += LChangeTextBtnClick;
             LResetBtn.Click += LResetBtnClick;
@@ -160,8 +167,8 @@ namespace tua_tell_us_Josie
             InfoPnl.BackColor = System.Drawing.Color.Transparent;
             InfoPnl.Visible = true;
 
-            ApplicationLbl.SetBounds(InfoPnl.Width - 180, 10, 130, 30);
-            ApplicationIconPb.SetBounds(InfoPnl.Width - 215, 12, 30, 30);
+            ApplicationLbl.SetBounds((InfoPnl.Width/2) - 50, 10, 130, 30);
+            ApplicationIconPb.SetBounds((InfoPnl.Width/2) - 85, 12, 30, 30);
             UserLbl.SetBounds(50, 10, 300, 30);
             
             UserLbl.Font = LabelBigFnt;
@@ -182,12 +189,25 @@ namespace tua_tell_us_Josie
             ApplicationIconPb.BorderStyle = BorderStyle.None;
             ApplicationIconPb.SizeMode = PictureBoxSizeMode.StretchImage;
             ApplicationIconPb.Visible = true;
-                               
+
+            SettingsBtn.SetBounds((InfoPnl.Width - 130), 10, 50, 50);
+            
+
+            QuitBtn.SetBounds((InfoPnl.Width - 70), 5, 45, 45);
+            QuitBtn.BackColor = Color.Purple;
+            QuitBtn.Visible = true;
+            QuitBtn.FlatStyle = FlatStyle.Flat;
+            QuitBtn.FlatAppearance.BorderSize = 0;
+            QuitBtn.BackgroundImage = Resources.really_new_quit_button;
+            QuitBtn.BackgroundImageLayout = ImageLayout.Zoom;
+            QuitBtn.AutoSize = false;
+
             this.Controls.Add(InfoPnl);
             InfoPnl.Controls.Add(ApplicationLbl);
             InfoPnl.Controls.Add(ApplicationIconPb);
             InfoPnl.Controls.Add(UserLbl);
-
+            InfoPnl.Controls.Add(QuitBtn);
+            
             //set up the left button panel
             int LBtnPnlWidth = (MainFormScreenSize.Width / 2) - 80;
             int LBtnPnlHeight = (int)(MainFormScreenSize.Height * .40) - 80;
@@ -472,6 +492,16 @@ namespace tua_tell_us_Josie
 
 
         #region CLICK EVENTS
+        private void SettingsBtnClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void QuitBtnClick(object sender, EventArgs e)
+        {
+            Close();
+        }
+        
         private void LBtnClick(object sender, EventArgs e)
         {
             AnswerLbl.Font = BtnStartFnt;
@@ -534,7 +564,19 @@ namespace tua_tell_us_Josie
             ContentPnlPath.CloseFigure();
             ContentPnl.Region = new System.Drawing.Region(ContentPnlPath);
         }
-        
+
+        private void QuitBtnPaint(object? sender, PaintEventArgs e)
+        {
+            var LBtnPnlPath = new System.Drawing.Drawing2D.GraphicsPath();
+            LBtnPnlPath.StartFigure();
+            LBtnPnlPath.AddArc(QuitBtn.DisplayRectangle.X + QuitBtn.DisplayRectangle.Width - 50, QuitBtn.DisplayRectangle.Y, 50, 50, 270, 90);
+            LBtnPnlPath.AddArc(QuitBtn.DisplayRectangle.X + QuitBtn.DisplayRectangle.Width - 50, QuitBtn.DisplayRectangle.Y + QuitBtn.DisplayRectangle.Height - 50, 50, 50, 0, 90);
+            LBtnPnlPath.AddArc(QuitBtn.DisplayRectangle.X, QuitBtn.DisplayRectangle.Y + QuitBtn.DisplayRectangle.Height - 50, 50, 50, -270, 90);
+            LBtnPnlPath.AddArc(QuitBtn.DisplayRectangle.X, QuitBtn.DisplayRectangle.Y, 50, 50, 180, 90);
+            LBtnPnlPath.CloseFigure();
+            QuitBtn.Region = new System.Drawing.Region(LBtnPnlPath);
+        }
+
         private void LBtnPnlPaint(object? sender, PaintEventArgs e)
         {
             var LBtnPnlPath = new System.Drawing.Drawing2D.GraphicsPath();
