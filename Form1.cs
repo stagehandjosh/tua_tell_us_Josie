@@ -191,8 +191,7 @@ namespace tua_tell_us_Josie
             ApplicationIconPb.Visible = true;
 
             SettingsBtn.SetBounds((InfoPnl.Width - 130), 10, 50, 50);
-            
-
+           
             QuitBtn.SetBounds((InfoPnl.Width - 70), 5, 45, 45);
             QuitBtn.BackColor = Color.Purple;
             QuitBtn.Visible = true;
@@ -215,7 +214,6 @@ namespace tua_tell_us_Josie
             LBtnPnl.BackColor = LBtnClr;
             LBtnPnl.Visible = true;
             this.Controls.Add(LBtnPnl);
-
 
             //set up the left button
             double LBtnDWidth = LBtnPnlWidth;
