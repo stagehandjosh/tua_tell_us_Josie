@@ -10,8 +10,10 @@ namespace tua_tell_us_Josie
 {
     public partial class MainForm : Form
     {
-
+        private ChangeTextForm ChangeTextForm;
         private Form2 form2;
+        Form LChangeTextFrm = new ChangeTextForm();
+        
 
         #region SETTINGS
         String m_ProductVersion = "1.0.0";
@@ -34,6 +36,7 @@ namespace tua_tell_us_Josie
         Color RResetBtnClr = Color.FromArgb(255, 239, 154, 154);
         Color RStandByClr = Color.FromArgb(255, 229, 115, 115);
         Color RPressedClr = Color.FromArgb(255, 229, 57, 53);
+        Color ChangeTextFormClr = Color.FromArgb(255, 255, 247, 157);
 
         #endregion
 
@@ -91,6 +94,7 @@ namespace tua_tell_us_Josie
             LBtnPnl.Paint += LBtnPnlPaint;
             LBtn.Paint += LBtnPaint;
             LChangeTextBtn.Paint += LChangeTextBtnPaint;
+            //LChangeTextFrm.Paint += LChangeTextFrmPaint;
             LResetBtn.Paint += LResetBtnPaint;
             RBtnPnl.Paint += RBtnPnlPaint;
             RBtn.Paint += RBtnPaint;
@@ -121,6 +125,11 @@ namespace tua_tell_us_Josie
 
             //chekc for a second screen
             //ScreenCheck();
+        }
+
+        private void LeftChangeTextFrm_Paint(object? sender, PaintEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         public void InitializeMainForm()
@@ -516,6 +525,27 @@ namespace tua_tell_us_Josie
 
         private void LChangeTextBtnClick(object sender, EventArgs e) 
         {
+            Form LChangeTextFrm = new ChangeTextForm();
+
+            LChangeTextFrm.StartPosition = FormStartPosition.Manual;
+            double ChangeTextFrmDWidth = ContentPnl.Width;
+            LChangeTextFrm.Width = (int)Math.Truncate(ChangeTextFrmDWidth - (ChangeTextFrmDWidth * .25));
+            double ChangeTextFrmDHeight = ContentPnl.Height;
+            LChangeTextFrm.Height = (int)Math.Truncate(ChangeTextFrmDHeight - (ChangeTextFrmDHeight * .25));
+            LChangeTextFrm.Location = new Point(ContentPnl.Width / 2 - LChangeTextFrm.Width / 2, ContentPnl.Location.Y + ((ContentPnl.Height /2) - (LChangeTextFrm.Height) / 2));
+            LChangeTextFrm.MinimizeBox = false;
+            LChangeTextFrm.MaximizeBox = false;
+            LChangeTextFrm.ControlBox = false;
+            LChangeTextFrm.BackColor = LChangeTextBtnClr;
+            LChangeTextFrm.AutoSize = false;
+            LChangeTextFrm.FormBorderStyle = FormBorderStyle.None;
+
+
+
+
+            LChangeTextFrm.Paint += LChangeTextFrmPaint;
+            LChangeTextFrm.ShowDialog();
+
 
         }
 
@@ -671,10 +701,26 @@ namespace tua_tell_us_Josie
             RResetBtn.Region = new System.Drawing.Region(LBtnPnlPath);
         }
 
+        private void LChangeTextFrmPaint(object sender, PaintEventArgs e)
+        {
+            var ContentPnlPath = new System.Drawing.Drawing2D.GraphicsPath();
+            ContentPnlPath.StartFigure();
+            ContentPnlPath.AddArc(LChangeTextFrm.DisplayRectangle.X + LChangeTextFrm.DisplayRectangle.Width - 50, LChangeTextFrm.DisplayRectangle.Y, 50, 50, 270, 90);
+            ContentPnlPath.AddArc(LChangeTextFrm.DisplayRectangle.X + LChangeTextFrm.DisplayRectangle.Width - 50, LChangeTextFrm.DisplayRectangle.Y + LChangeTextFrm.DisplayRectangle.Height - 50, 50, 50, 0, 90);
+            ContentPnlPath.AddArc(LChangeTextFrm.DisplayRectangle.X, LChangeTextFrm.DisplayRectangle.Y + LChangeTextFrm.DisplayRectangle.Height - 50, 50, 50, -270, 90);
+            ContentPnlPath.AddArc(LChangeTextFrm.DisplayRectangle.X, LChangeTextFrm.DisplayRectangle.Y, 50, 50, 180, 90);
+            ContentPnlPath.CloseFigure();
+            LChangeTextFrm.Region = new System.Drawing.Region(ContentPnlPath);
+        }
+
         #endregion
 
     }
 
+    public class ChangeTextForm : Form
+    {
+
+    }
     public class Form2 : Form
     {
 
