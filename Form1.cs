@@ -50,6 +50,7 @@ namespace tua_tell_us_Josie
 
         #region MAIN SCREEN
         Form LChangeTextFrm = new ChangeTextForm();
+        Form RChangeTextFrm = new ChangeTextForm();
 
         //Panel ModePnl = new Panel();
         Panel ContentPnl = new Panel();
@@ -66,6 +67,7 @@ namespace tua_tell_us_Josie
 
         Button QuitBtn = new Button();
         Button SettingsBtn = new Button();
+        Button ContentPanelResetBtn = new Button();
         Button LBtn = new Button();
         Button LChangeTextBtn = new Button();
         Button LResetBtn = new Button();
@@ -74,8 +76,11 @@ namespace tua_tell_us_Josie
         Button RBtn = new Button();
         Button RChangeTextBtn = new Button();
         Button RResetBtn= new Button();
-        
+        Button RChangeTextFormOKBtn = new Button();
+        Button RChangeTextFormCancelBtn = new Button();
+
         TextBox LChangeTextFormTxt = new TextBox();
+        TextBox RChangeTextFormTxt = new TextBox();
 
 
         #endregion
@@ -103,7 +108,6 @@ namespace tua_tell_us_Josie
             LBtnPnl.Paint += LBtnPnlPaint;
             LBtn.Paint += LBtnPaint;
             LChangeTextBtn.Paint += LChangeTextBtnPaint;
-            //LChangeTextFrm.Paint += LChangeTextFrmPaint;
             LResetBtn.Paint += LResetBtnPaint;
             RBtnPnl.Paint += RBtnPnlPaint;
             RBtn.Paint += RBtnPaint;
@@ -112,6 +116,7 @@ namespace tua_tell_us_Josie
 
             QuitBtn.Click += QuitBtnClick;
             SettingsBtn.Click += SettingsBtnClick;
+            ContentPanelResetBtn.Click += ContentPanelResetBtnClick;
             LBtn.Click += LBtnClick;
             LChangeTextBtn.Click += LChangeTextBtnClick;
             LResetBtn.Click += LResetBtnClick;
@@ -135,11 +140,7 @@ namespace tua_tell_us_Josie
             //chekc for a second screen
             //ScreenCheck();
         }
-
-        //private void LeftChangeTextFrm_Paint(object? sender, PaintEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
+             
 
         public void InitializeMainForm()
         {
@@ -261,6 +262,7 @@ namespace tua_tell_us_Josie
             LChangeTextBtn.Visible = true;
             LChangeTextBtn.FlatStyle = FlatStyle.Flat;
             LChangeTextBtn.FlatAppearance.BorderSize = 0;
+            LChangeTextBtn.FlatAppearance.BorderColor = LChangeTextBtnClr;
             LChangeTextBtn.Font = BtnStartFnt;
             LChangeTextBtn.Text = "change text";
             LChangeTextBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -279,6 +281,7 @@ namespace tua_tell_us_Josie
             LResetBtn.Visible = true;
             LResetBtn.FlatStyle = FlatStyle.Flat;
             LResetBtn.FlatAppearance.BorderSize = 0;
+            LResetBtn.FlatAppearance.BorderColor = LResetBtnClr;
             LResetBtn.Font = BtnStartFnt;
             LResetBtn.Text = "reset";
             LResetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -323,6 +326,7 @@ namespace tua_tell_us_Josie
             RChangeTextBtn.Visible = true;
             RChangeTextBtn.FlatStyle = FlatStyle.Flat;
             RChangeTextBtn.FlatAppearance.BorderSize = 0;
+            RChangeTextBtn.FlatAppearance.BorderColor = RChangeTextBtnClr;
             RChangeTextBtn.Font = BtnStartFnt;
             RChangeTextBtn.Text = "change text";
             RChangeTextBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -341,6 +345,7 @@ namespace tua_tell_us_Josie
             RResetBtn.Visible = true;
             RResetBtn.FlatStyle = FlatStyle.Flat;
             RResetBtn.FlatAppearance.BorderSize = 0;
+            RResetBtn.FlatAppearance.BorderColor = RResetBtnClr;
             RResetBtn.Font = BtnStartFnt;
             RResetBtn.Text = "reset";
             RResetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -377,22 +382,105 @@ namespace tua_tell_us_Josie
             LChangeTextFormTxt.Location = new Point(LChangeTextFrm.Width / 2 - LChangeTextFormTxt.Width / 2,  (LChangeTextFrm.Height / 2) - (LChangeTextFormTxt.Height) / 2);
             LChangeTextFrm.Controls.Add(LChangeTextFormTxt);
 
-            ////double RResetBtnDWidth = RBtnPnlWidth;
-            ////RResetBtn.Width = (int)Math.Truncate(RResetBtnDWidth - (RResetBtnDWidth * .78));
-            ////double RResetBtnDHeight = RBtnPnlHeight;
-            ////RResetBtn.Height = RChangeTextBtn.Height;
-            ////RResetBtn.Location = new Point(RBtn.Location.X + RChangeTextBtn.Width + (int)Math.Truncate(RChangeTextBtn.Width * .05), RChangeTextBtn.Location.Y);
-            ////RResetBtn.BackColor = RResetBtnClr;
-            ////RResetBtn.Visible = true;
-            ////RResetBtn.FlatStyle = FlatStyle.Flat;
-            ////RResetBtn.FlatAppearance.BorderSize = 0;
-            ////RResetBtn.Font = BtnStartFnt;
-            ////RResetBtn.Text = "reset";
-            ////RResetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            ////RResetBtn.AutoSize = false;
-            ////f_button = RResetBtn;
-            ////MakeButtonTextFit(f_button);
-            ////RBtnPnl.Controls.Add(RResetBtn);
+            LChangeTextFormOKBtn.Width = LResetBtn.Width;
+            LChangeTextFormOKBtn.Height = LResetBtn.Height;
+            LChangeTextFormOKBtn.Location = new Point(LChangeTextFrm.Width - LChangeTextFormOKBtn.Width - ((int) Math.Truncate( LChangeTextFrm.Width * .05)) , ( LChangeTextFrm.Height - LChangeTextFormOKBtn.Height)  - (int)Math.Truncate(LChangeTextFrm.Height * .05));
+            LChangeTextFormOKBtn.BackColor = LBtnClr;
+            LChangeTextFormOKBtn.Visible = true;
+            LChangeTextFormOKBtn.FlatStyle = FlatStyle.Flat;
+            LChangeTextFormOKBtn.FlatAppearance.BorderSize = 0;
+            LChangeTextFormOKBtn.FlatAppearance.BorderColor = LBtnClr;
+            LChangeTextFormOKBtn.Font = BtnStartFnt;
+            LChangeTextFormOKBtn.Text = "OK";
+            LChangeTextFormOKBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            LChangeTextFormOKBtn.AutoSize = false;
+            Button f_button = LChangeTextFormOKBtn;
+            MakeButtonTextFit(f_button);
+            LChangeTextFormOKBtn.DialogResult = DialogResult.OK;
+            LChangeTextFormOKBtn.Paint += LChangeTxtFrmOKBtnPaint;
+
+            LChangeTextFormCancelBtn.Width = LResetBtn.Width;
+            LChangeTextFormCancelBtn.Height = LResetBtn.Height;
+            LChangeTextFormCancelBtn.Location = new Point( LChangeTextFormOKBtn.Location.X - ( LChangeTextFormOKBtn.Width + ((int)Math.Truncate(LChangeTextFrm.Width * .05))), (LChangeTextFormOKBtn.Location.Y));
+            LChangeTextFormCancelBtn.BackColor = LBtnClr;
+            LChangeTextFormCancelBtn.Visible = true;
+            LChangeTextFormCancelBtn.FlatStyle = FlatStyle.Flat;
+            LChangeTextFormCancelBtn.FlatAppearance.BorderSize = 0;
+            LChangeTextFormCancelBtn.FlatAppearance.BorderColor = LBtnClr;
+            LChangeTextFormCancelBtn.Font = BtnStartFnt;
+            LChangeTextFormCancelBtn.Text = "Cancel";
+            LChangeTextFormCancelBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            LChangeTextFormCancelBtn.AutoSize = false;
+            Button f_button2 = LChangeTextFormCancelBtn;
+            MakeButtonTextFit(f_button2);
+            LChangeTextFormCancelBtn.DialogResult = DialogResult.Cancel; 
+            LChangeTextFormCancelBtn.Paint += LChangeTxtFrmCancelBtnPaint;
+
+            LChangeTextFrm.AcceptButton = LChangeTextFormOKBtn;
+            LChangeTextFrm.CancelButton = LChangeTextFormCancelBtn;
+            LChangeTextFrm.Controls.Add(LChangeTextFormOKBtn);
+            LChangeTextFrm.Controls.Add(LChangeTextFormCancelBtn);
+
+            RChangeTextFrm.StartPosition = FormStartPosition.Manual;
+            //double ChangeTextFrmDWidth = ContentPnl.Width;
+            RChangeTextFrm.Width = (int)Math.Truncate(ChangeTextFrmDWidth - (ChangeTextFrmDWidth * .25));
+            //double ChangeTextFrmDHeight = ContentPnl.Height;
+            RChangeTextFrm.Height = (int)Math.Truncate(ChangeTextFrmDHeight - (ChangeTextFrmDHeight * .25));
+            RChangeTextFrm.Location = new Point(ContentPnl.Width / 2 - LChangeTextFrm.Width / 2, ContentPnl.Location.Y + ((ContentPnl.Height / 2) - (LChangeTextFrm.Height) / 2));
+            RChangeTextFrm.MinimizeBox = false;
+            RChangeTextFrm.MaximizeBox = false;
+            RChangeTextFrm.ControlBox = false;
+            RChangeTextFrm.BackColor = RChangeTextBtnClr;
+            RChangeTextFrm.AutoSize = false;
+            RChangeTextFrm.FormBorderStyle = FormBorderStyle.None;
+            RChangeTextFrm.Paint += RChangeTextFrmPaint;
+
+            //double ChangeTextTxtDWidth = RChangeTextFrm.Width;
+            RChangeTextFormTxt.Width = (int)Math.Truncate(ChangeTextTxtDWidth - (ChangeTextTxtDWidth * .25));
+            RChangeTextFormTxt.Font = BtnStartFnt;
+            f_text = RChangeTextFormTxt;
+            f_form = RChangeTextFrm;
+            SetTextBoxFont(f_text, f_form);
+            RChangeTextFormTxt.Location = new Point(RChangeTextFrm.Width / 2 - RChangeTextFormTxt.Width / 2, (RChangeTextFrm.Height / 2) - (RChangeTextFormTxt.Height) / 2);
+            RChangeTextFrm.Controls.Add(RChangeTextFormTxt);
+
+            RChangeTextFormOKBtn.Width = RResetBtn.Width;
+            RChangeTextFormOKBtn.Height = RResetBtn.Height;
+            RChangeTextFormOKBtn.Location = new Point(RChangeTextFrm.Width - RChangeTextFormOKBtn.Width - ((int)Math.Truncate(RChangeTextFrm.Width * .05)), (LChangeTextFrm.Height - RChangeTextFormOKBtn.Height) - (int)Math.Truncate(RChangeTextFrm.Height * .05));
+            RChangeTextFormOKBtn.BackColor = RBtnClr;
+            RChangeTextFormOKBtn.Visible = true;
+            RChangeTextFormOKBtn.FlatStyle = FlatStyle.Flat;
+            RChangeTextFormOKBtn.FlatAppearance.BorderSize = 0;
+            RChangeTextFormOKBtn.FlatAppearance.BorderColor = LBtnClr;
+            RChangeTextFormOKBtn.Font = BtnStartFnt;
+            RChangeTextFormOKBtn.Text = "OK";
+            RChangeTextFormOKBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            f_button = RChangeTextFormOKBtn;
+            MakeButtonTextFit(f_button);
+            RChangeTextFormOKBtn.DialogResult = DialogResult.OK;
+            RChangeTextFormOKBtn.Paint += RChangeTxtFrmOKBtnPaint;
+
+            RChangeTextFormCancelBtn.Width = RResetBtn.Width;
+            RChangeTextFormCancelBtn.Height = RResetBtn.Height;
+            RChangeTextFormCancelBtn.Location = new Point(RChangeTextFormOKBtn.Location.X - (RChangeTextFormOKBtn.Width + ((int)Math.Truncate(RChangeTextFrm.Width * .05))), (RChangeTextFormOKBtn.Location.Y));
+            RChangeTextFormCancelBtn.BackColor = RBtnClr;
+            RChangeTextFormCancelBtn.Visible = true;
+            RChangeTextFormCancelBtn.FlatStyle = FlatStyle.Flat;
+            RChangeTextFormCancelBtn.FlatAppearance.BorderSize = 0;
+            RChangeTextFormCancelBtn.FlatAppearance.BorderColor = LBtnClr;
+            RChangeTextFormCancelBtn.Font = BtnStartFnt;
+            RChangeTextFormCancelBtn.Text = "Cancel";
+            RChangeTextFormCancelBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            RChangeTextFormCancelBtn.AutoSize = false;
+            f_button2 = RChangeTextFormCancelBtn;
+            MakeButtonTextFit(f_button2);
+            RChangeTextFormCancelBtn.DialogResult = DialogResult.Cancel;
+            RChangeTextFormCancelBtn.Paint += RChangeTxtFrmCancelBtnPaint;
+
+            RChangeTextFrm.AcceptButton = RChangeTextFormOKBtn;
+            RChangeTextFrm.CancelButton = RChangeTextFormCancelBtn;
+            RChangeTextFrm.Controls.Add(RChangeTextFormOKBtn);
+            RChangeTextFrm.Controls.Add(RChangeTextFormCancelBtn);
 
         }
         #endregion
@@ -573,6 +661,15 @@ namespace tua_tell_us_Josie
             Close();
         }
         
+        private void ContentPanelResetBtnClick(object sender, EventArgs e)
+        {
+            AnswerLbl.Font = BtnStartFnt;
+            AnswerLbl.Text = "";
+            m_last_pressed = " ";
+            ContentPnl.BackColor = GrayPnlClr;
+            ContentPnl.Refresh();
+        }
+
         private void LBtnClick(object sender, EventArgs e)
         {
             AnswerLbl.Font = BtnStartFnt;
@@ -589,7 +686,31 @@ namespace tua_tell_us_Josie
 
         private void LChangeTextBtnClick(object sender, EventArgs e) 
         {
-           LChangeTextFrm.ShowDialog();
+            LChangeTextFormTxt.Select();
+            LChangeTextFrm.ShowDialog();
+            if (LChangeTextFrm.DialogResult == DialogResult.OK)
+            {
+                //first make sure it's not blank
+                if (LChangeTextFormTxt.Text == "")
+                {
+                    LChangeTextFrm.Visible = false;
+                }
+                else
+                {
+                    LBtn.Text = LChangeTextFormTxt.Text;
+                    LChangeTextFormTxt.Text = "";
+                    LBtn.Font = BtnStartFnt;
+                    Button f_button = LBtn;
+                    MakeButtonTextFit(f_button);
+                    LChangeTextFrm.Visible = false;
+                } 
+            }
+           else
+            {
+                LChangeTextFormTxt.Text = "";
+                LChangeTextFrm.Visible = false;
+            }
+            ContentPanelResetBtn.PerformClick();
         }
 
         private void LResetBtnClick(object sender, EventArgs e)
@@ -612,7 +733,31 @@ namespace tua_tell_us_Josie
 
         private void RChangeTextBtnClick(object sender, EventArgs e)
         {
-
+            RChangeTextFormTxt.Select();
+            RChangeTextFrm.ShowDialog();
+            if (RChangeTextFrm.DialogResult == DialogResult.OK)
+            {
+                //first make sure it's not blank
+                if (RChangeTextFormTxt.Text == "")
+                {
+                    RChangeTextFrm.Visible = false;
+                }
+                else
+                {
+                    RBtn.Text = RChangeTextFormTxt.Text;
+                    RChangeTextFormTxt.Text = "";
+                    RBtn.Font = BtnStartFnt;
+                    Button f_button = RBtn;
+                    MakeButtonTextFit(f_button);
+                    RChangeTextFrm.Visible = false;
+                }
+            }
+            else
+            {
+                RChangeTextFormTxt.Text = "";
+                LChangeTextFrm.Visible = false;
+            }
+            ContentPanelResetBtn.PerformClick();
         }
 
         private void RResetBtnClick(object sender, EventArgs e)
@@ -753,6 +898,66 @@ namespace tua_tell_us_Josie
             ContentPnlPath.AddArc(LChangeTextFrm.DisplayRectangle.X, LChangeTextFrm.DisplayRectangle.Y, 50, 50, 180, 90);
             ContentPnlPath.CloseFigure();
             LChangeTextFrm.Region = new System.Drawing.Region(ContentPnlPath);
+        }
+
+        private void LChangeTxtFrmOKBtnPaint(object? sender, PaintEventArgs e)
+        {
+            var LBtnPnlPath = new System.Drawing.Drawing2D.GraphicsPath();
+            LBtnPnlPath.StartFigure();
+            LBtnPnlPath.AddArc(LChangeTextFormOKBtn.DisplayRectangle.X + LChangeTextFormOKBtn.DisplayRectangle.Width - 50, LChangeTextFormOKBtn.DisplayRectangle.Y, 50, 50, 270, 90);
+            LBtnPnlPath.AddArc(LChangeTextFormOKBtn.DisplayRectangle.X + LChangeTextFormOKBtn.DisplayRectangle.Width - 50, LChangeTextFormOKBtn.DisplayRectangle.Y + LChangeTextFormOKBtn.DisplayRectangle.Height - 50, 50, 50, 0, 90);
+            LBtnPnlPath.AddArc(LChangeTextFormOKBtn.DisplayRectangle.X, LChangeTextFormOKBtn.DisplayRectangle.Y + LChangeTextFormOKBtn.DisplayRectangle.Height - 50, 50, 50, -270, 90);
+            LBtnPnlPath.AddArc(LChangeTextFormOKBtn.DisplayRectangle.X, LChangeTextFormOKBtn.DisplayRectangle.Y, 50, 50, 180, 90);
+            LBtnPnlPath.CloseFigure();
+            LChangeTextFormOKBtn.Region = new System.Drawing.Region(LBtnPnlPath);
+        }
+
+        private void LChangeTxtFrmCancelBtnPaint(object? sender, PaintEventArgs e)
+        {
+            var LBtnPnlPath = new System.Drawing.Drawing2D.GraphicsPath();
+            LBtnPnlPath.StartFigure();
+            LBtnPnlPath.AddArc(LChangeTextFormCancelBtn.DisplayRectangle.X + LChangeTextFormCancelBtn.DisplayRectangle.Width - 50, LChangeTextFormCancelBtn.DisplayRectangle.Y, 50, 50, 270, 90);
+            LBtnPnlPath.AddArc(LChangeTextFormCancelBtn.DisplayRectangle.X + LChangeTextFormCancelBtn.DisplayRectangle.Width - 50, LChangeTextFormCancelBtn.DisplayRectangle.Y + LChangeTextFormCancelBtn.DisplayRectangle.Height - 50, 50, 50, 0, 90);
+            LBtnPnlPath.AddArc(LChangeTextFormCancelBtn.DisplayRectangle.X, LChangeTextFormCancelBtn.DisplayRectangle.Y + LChangeTextFormCancelBtn.DisplayRectangle.Height - 50, 50, 50, -270, 90);
+            LBtnPnlPath.AddArc(LChangeTextFormCancelBtn.DisplayRectangle.X, LChangeTextFormCancelBtn.DisplayRectangle.Y, 50, 50, 180, 90);
+            LBtnPnlPath.CloseFigure();
+            LChangeTextFormCancelBtn.Region = new System.Drawing.Region(LBtnPnlPath);
+        }
+
+        private void RChangeTextFrmPaint(object sender, PaintEventArgs e)
+        {
+            var ContentPnlPath = new System.Drawing.Drawing2D.GraphicsPath();
+            ContentPnlPath.StartFigure();
+            ContentPnlPath.AddArc(RChangeTextFrm.DisplayRectangle.X + RChangeTextFrm.DisplayRectangle.Width - 50, RChangeTextFrm.DisplayRectangle.Y, 50, 50, 270, 90);
+            ContentPnlPath.AddArc(RChangeTextFrm.DisplayRectangle.X + RChangeTextFrm.DisplayRectangle.Width - 50, RChangeTextFrm.DisplayRectangle.Y + RChangeTextFrm.DisplayRectangle.Height - 50, 50, 50, 0, 90);
+            ContentPnlPath.AddArc(RChangeTextFrm.DisplayRectangle.X, RChangeTextFrm.DisplayRectangle.Y + RChangeTextFrm.DisplayRectangle.Height - 50, 50, 50, -270, 90);
+            ContentPnlPath.AddArc(RChangeTextFrm.DisplayRectangle.X, RChangeTextFrm.DisplayRectangle.Y, 50, 50, 180, 90);
+            ContentPnlPath.CloseFigure();
+            RChangeTextFrm.Region = new System.Drawing.Region(ContentPnlPath);
+        }
+
+        private void RChangeTxtFrmOKBtnPaint(object? sender, PaintEventArgs e)
+        {
+            var LBtnPnlPath = new System.Drawing.Drawing2D.GraphicsPath();
+            LBtnPnlPath.StartFigure();
+            LBtnPnlPath.AddArc(RChangeTextFormOKBtn.DisplayRectangle.X + RChangeTextFormOKBtn.DisplayRectangle.Width - 50, RChangeTextFormOKBtn.DisplayRectangle.Y, 50, 50, 270, 90);
+            LBtnPnlPath.AddArc(RChangeTextFormOKBtn.DisplayRectangle.X + RChangeTextFormOKBtn.DisplayRectangle.Width - 50, RChangeTextFormOKBtn.DisplayRectangle.Y + RChangeTextFormOKBtn.DisplayRectangle.Height - 50, 50, 50, 0, 90);
+            LBtnPnlPath.AddArc(RChangeTextFormOKBtn.DisplayRectangle.X, RChangeTextFormOKBtn.DisplayRectangle.Y + RChangeTextFormOKBtn.DisplayRectangle.Height - 50, 50, 50, -270, 90);
+            LBtnPnlPath.AddArc(RChangeTextFormOKBtn.DisplayRectangle.X, RChangeTextFormOKBtn.DisplayRectangle.Y, 50, 50, 180, 90);
+            LBtnPnlPath.CloseFigure();
+            RChangeTextFormOKBtn.Region = new System.Drawing.Region(LBtnPnlPath);
+        }
+
+        private void RChangeTxtFrmCancelBtnPaint(object? sender, PaintEventArgs e)
+        {
+            var LBtnPnlPath = new System.Drawing.Drawing2D.GraphicsPath();
+            LBtnPnlPath.StartFigure();
+            LBtnPnlPath.AddArc(RChangeTextFormCancelBtn.DisplayRectangle.X + RChangeTextFormCancelBtn.DisplayRectangle.Width - 50, RChangeTextFormCancelBtn.DisplayRectangle.Y, 50, 50, 270, 90);
+            LBtnPnlPath.AddArc(RChangeTextFormCancelBtn.DisplayRectangle.X + RChangeTextFormCancelBtn.DisplayRectangle.Width - 50, RChangeTextFormCancelBtn.DisplayRectangle.Y + RChangeTextFormCancelBtn.DisplayRectangle.Height - 50, 50, 50, 0, 90);
+            LBtnPnlPath.AddArc(RChangeTextFormCancelBtn.DisplayRectangle.X, RChangeTextFormCancelBtn.DisplayRectangle.Y + RChangeTextFormCancelBtn.DisplayRectangle.Height - 50, 50, 50, -270, 90);
+            LBtnPnlPath.AddArc(RChangeTextFormCancelBtn.DisplayRectangle.X, RChangeTextFormCancelBtn.DisplayRectangle.Y, 50, 50, 180, 90);
+            LBtnPnlPath.CloseFigure();
+            RChangeTextFormCancelBtn.Region = new System.Drawing.Region(LBtnPnlPath);
         }
 
         #endregion
