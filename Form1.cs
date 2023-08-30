@@ -12,9 +12,8 @@ namespace tua_tell_us_Josie
     {
         private ChangeTextForm ChangeTextForm;
         private Form2 form2;
-        Form LChangeTextFrm = new ChangeTextForm();
+        //Form LChangeTextFrm = new ChangeTextForm();
         
-
         #region SETTINGS
         String m_ProductVersion = "1.0.0";
         String m_LicensedUser = "Josie Johnson";
@@ -50,6 +49,8 @@ namespace tua_tell_us_Josie
         #endregion
 
         #region MAIN SCREEN
+        Form LChangeTextFrm = new ChangeTextForm();
+
         //Panel ModePnl = new Panel();
         Panel ContentPnl = new Panel();
         Panel InfoPnl = new Panel();
@@ -68,9 +69,14 @@ namespace tua_tell_us_Josie
         Button LBtn = new Button();
         Button LChangeTextBtn = new Button();
         Button LResetBtn = new Button();
+        Button LChangeTextFormOKBtn = new Button();
+        Button LChangeTextFormCancelBtn = new Button();
         Button RBtn = new Button();
         Button RChangeTextBtn = new Button();
         Button RResetBtn= new Button();
+        
+        TextBox LChangeTextFormTxt = new TextBox();
+
 
         #endregion
 
@@ -87,6 +93,9 @@ namespace tua_tell_us_Josie
 
             //set up main screen - Form1
             InitializeMainForm();
+
+            //set up the ChangeTextForms
+            InitializeChangeTextForms();
 
             //add handlers
             ContentPnl.Paint += ContentPnlPaint;
@@ -127,10 +136,10 @@ namespace tua_tell_us_Josie
             //ScreenCheck();
         }
 
-        private void LeftChangeTextFrm_Paint(object? sender, PaintEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        //private void LeftChangeTextFrm_Paint(object? sender, PaintEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public void InitializeMainForm()
         {
@@ -342,6 +351,38 @@ namespace tua_tell_us_Josie
 
 
         }
+
+        public void InitializeChangeTextForms()
+        {
+            LChangeTextFrm.StartPosition = FormStartPosition.Manual;
+            double ChangeTextFrmDWidth = ContentPnl.Width;
+            LChangeTextFrm.Width = (int)Math.Truncate(ChangeTextFrmDWidth - (ChangeTextFrmDWidth * .25));
+            double ChangeTextFrmDHeight = ContentPnl.Height;
+            LChangeTextFrm.Height = (int)Math.Truncate(ChangeTextFrmDHeight - (ChangeTextFrmDHeight * .25));
+            LChangeTextFrm.Location = new Point(ContentPnl.Width / 2 - LChangeTextFrm.Width / 2, ContentPnl.Location.Y + ((ContentPnl.Height / 2) - (LChangeTextFrm.Height) / 2));
+            LChangeTextFrm.MinimizeBox = false;
+            LChangeTextFrm.MaximizeBox = false;
+            LChangeTextFrm.ControlBox = false;
+            LChangeTextFrm.BackColor = LChangeTextBtnClr;
+            LChangeTextFrm.AutoSize = false;
+            LChangeTextFrm.FormBorderStyle = FormBorderStyle.None;
+            LChangeTextFrm.Paint += LChangeTextFrmPaint;
+
+            double ChangeTextTxtDWidth = LChangeTextFrm.Width;
+            LChangeTextFormTxt.Width = (int)Math.Truncate(ChangeTextTxtDWidth - (ChangeTextTxtDWidth * .25));
+           
+            LChangeTextFormTxt.Font = BtnStartFnt;
+            TextBox f_text = LChangeTextFormTxt;
+            Form f_form = LChangeTextFrm;
+            SetTextBoxFont(f_text, f_form);
+            LChangeTextFormTxt.Location = new Point(LChangeTextFrm.Width / 2 - LChangeTextFormTxt.Width / 2,  (LChangeTextFrm.Height / 4) - (LChangeTextFormTxt.Height) / 2);
+            
+                       
+            LChangeTextFrm.Controls.Add(LChangeTextFormTxt);
+
+
+
+        }
         #endregion
 
         #region SUBS AND SYSTEM EVENTS
@@ -494,9 +535,20 @@ namespace tua_tell_us_Josie
             f_button.Font = font;
         }
 
+        private void SetTextBoxFont(TextBox f_text, Form f_form)
+        {
+            Font font = f_text.Font;
+
+            float fontSize = font.Size;
+            while (TextRenderer.MeasureText("X", font).Height <= (int)Math.Truncate(f_form.Height * .5) & (fontSize <= 70))
+            {
+                fontSize++;
+                font = new Font(font.FontFamily, fontSize, font.Style);
+            }
+            f_text.Font = font;
+        }
+
         #endregion
-
-
 
         #region CLICK EVENTS
         private void SettingsBtnClick(object sender, EventArgs e)
@@ -525,28 +577,7 @@ namespace tua_tell_us_Josie
 
         private void LChangeTextBtnClick(object sender, EventArgs e) 
         {
-            Form LChangeTextFrm = new ChangeTextForm();
-
-            LChangeTextFrm.StartPosition = FormStartPosition.Manual;
-            double ChangeTextFrmDWidth = ContentPnl.Width;
-            LChangeTextFrm.Width = (int)Math.Truncate(ChangeTextFrmDWidth - (ChangeTextFrmDWidth * .25));
-            double ChangeTextFrmDHeight = ContentPnl.Height;
-            LChangeTextFrm.Height = (int)Math.Truncate(ChangeTextFrmDHeight - (ChangeTextFrmDHeight * .25));
-            LChangeTextFrm.Location = new Point(ContentPnl.Width / 2 - LChangeTextFrm.Width / 2, ContentPnl.Location.Y + ((ContentPnl.Height /2) - (LChangeTextFrm.Height) / 2));
-            LChangeTextFrm.MinimizeBox = false;
-            LChangeTextFrm.MaximizeBox = false;
-            LChangeTextFrm.ControlBox = false;
-            LChangeTextFrm.BackColor = LChangeTextBtnClr;
-            LChangeTextFrm.AutoSize = false;
-            LChangeTextFrm.FormBorderStyle = FormBorderStyle.None;
-
-
-
-
-            LChangeTextFrm.Paint += LChangeTextFrmPaint;
-            LChangeTextFrm.ShowDialog();
-
-
+           LChangeTextFrm.ShowDialog();
         }
 
         private void LResetBtnClick(object sender, EventArgs e)
@@ -578,7 +609,6 @@ namespace tua_tell_us_Josie
         }
 
         #endregion
-
 
         #region PAINT EVENTS
         private void ContentPnlPaint(object? sender, PaintEventArgs e)
@@ -721,6 +751,7 @@ namespace tua_tell_us_Josie
     {
 
     }
+   
     public class Form2 : Form
     {
 
