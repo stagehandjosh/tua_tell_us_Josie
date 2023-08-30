@@ -370,17 +370,29 @@ namespace tua_tell_us_Josie
 
             double ChangeTextTxtDWidth = LChangeTextFrm.Width;
             LChangeTextFormTxt.Width = (int)Math.Truncate(ChangeTextTxtDWidth - (ChangeTextTxtDWidth * .25));
-           
             LChangeTextFormTxt.Font = BtnStartFnt;
             TextBox f_text = LChangeTextFormTxt;
             Form f_form = LChangeTextFrm;
             SetTextBoxFont(f_text, f_form);
-            LChangeTextFormTxt.Location = new Point(LChangeTextFrm.Width / 2 - LChangeTextFormTxt.Width / 2,  (LChangeTextFrm.Height / 4) - (LChangeTextFormTxt.Height) / 2);
-            
-                       
+            LChangeTextFormTxt.Location = new Point(LChangeTextFrm.Width / 2 - LChangeTextFormTxt.Width / 2,  (LChangeTextFrm.Height / 2) - (LChangeTextFormTxt.Height) / 2);
             LChangeTextFrm.Controls.Add(LChangeTextFormTxt);
 
-
+            ////double RResetBtnDWidth = RBtnPnlWidth;
+            ////RResetBtn.Width = (int)Math.Truncate(RResetBtnDWidth - (RResetBtnDWidth * .78));
+            ////double RResetBtnDHeight = RBtnPnlHeight;
+            ////RResetBtn.Height = RChangeTextBtn.Height;
+            ////RResetBtn.Location = new Point(RBtn.Location.X + RChangeTextBtn.Width + (int)Math.Truncate(RChangeTextBtn.Width * .05), RChangeTextBtn.Location.Y);
+            ////RResetBtn.BackColor = RResetBtnClr;
+            ////RResetBtn.Visible = true;
+            ////RResetBtn.FlatStyle = FlatStyle.Flat;
+            ////RResetBtn.FlatAppearance.BorderSize = 0;
+            ////RResetBtn.Font = BtnStartFnt;
+            ////RResetBtn.Text = "reset";
+            ////RResetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            ////RResetBtn.AutoSize = false;
+            ////f_button = RResetBtn;
+            ////MakeButtonTextFit(f_button);
+            ////RBtnPnl.Controls.Add(RResetBtn);
 
         }
         #endregion
