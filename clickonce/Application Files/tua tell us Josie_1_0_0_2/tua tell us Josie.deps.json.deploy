@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "tua tell us Josie/1.0.0": {
+        "runtime": {
+          "tua tell us Josie.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "tua tell us Josie/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
