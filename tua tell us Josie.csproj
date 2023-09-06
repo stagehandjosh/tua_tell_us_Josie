@@ -9,6 +9,13 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <PackageIcon></PackageIcon>
     <ApplicationIcon>tua_icon.ico</ApplicationIcon>
+    <StartupObject>tua_tell_us_Josie.Program</StartupObject>
+    <Title>tell us Josie</Title>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+    <Authors>Josh Weitzman</Authors>
+    <Company>Norfast Consulting Group Inc.</Company>
+    <Description>Assistive communication software for a 2 switch array.</Description>
+    <Copyright>2023</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

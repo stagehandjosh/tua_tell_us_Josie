@@ -245,7 +245,7 @@ namespace tua_tell_us_Josie
             LBtn.FlatStyle = FlatStyle.Flat;
             LBtn.FlatAppearance.BorderSize = 0;
             LBtn.Font = BtnStartFnt;
-            LBtn.Text = "Josh Weitzman";
+            LBtn.Text = "yes";
             LBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             LBtn.AutoSize = false;
             Button f_button = LBtn;
@@ -309,7 +309,7 @@ namespace tua_tell_us_Josie
             RBtn.FlatStyle = FlatStyle.Flat;
             RBtn.FlatAppearance.BorderSize = 0;
             RBtn.Font = BtnStartFnt;
-            RBtn.Text = "Izzy Weitzman";
+            RBtn.Text = "no";
             RBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             RBtn.AutoSize = false;
             f_button = RBtn;
