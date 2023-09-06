@@ -16,6 +16,8 @@
     <Company>Norfast Consulting Group Inc.</Company>
     <Description>Assistive communication software for a 2 switch array.</Description>
     <Copyright>2023</Copyright>
+    <BaseOutputPath>D:\tell us Josie\tua_tell_us_Josie\clickonce</BaseOutputPath>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
