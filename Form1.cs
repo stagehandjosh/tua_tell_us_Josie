@@ -137,7 +137,7 @@ namespace tua_tell_us_Josie
             //create a reference to form2
             form2 = new Form2();
 
-            //chekc for a second screen
+            //check for a second screen
             //ScreenCheck();
         }
              
