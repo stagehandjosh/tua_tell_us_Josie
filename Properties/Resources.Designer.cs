@@ -61,6 +61,16 @@ namespace tua_tell_us_Josie.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap anothere_settings {
+            get {
+                object obj = ResourceManager.GetObject("anothere_settings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream bug_splat {
@@ -81,6 +91,26 @@ namespace tua_tell_us_Josie.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap fixed_settings {
+            get {
+                object obj = ResourceManager.GetObject("fixed_settings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap jw_setting_btn {
+            get {
+                object obj = ResourceManager.GetObject("jw setting btn", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap new_quit {
             get {
                 object obj = ResourceManager.GetObject("new quit", resourceCulture);
@@ -95,6 +125,16 @@ namespace tua_tell_us_Josie.Properties {
             get {
                 object obj = ResourceManager.GetObject("new quit button", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap new_settings_button {
+            get {
+                object obj = ResourceManager.GetObject("new_settings_button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -132,6 +172,16 @@ namespace tua_tell_us_Josie.Properties {
         internal static System.Drawing.Bitmap really_new_quit_button {
             get {
                 object obj = ResourceManager.GetObject("really new quit button", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap really_new_settings {
+            get {
+                object obj = ResourceManager.GetObject("really_new_settings", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
