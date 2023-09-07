@@ -18,6 +18,9 @@ namespace tua_tell_us_Josie
         String m_ProductVersion = "1.0.0";
         String m_LicensedUser = "Josie Johnson";
         string m_last_pressed = " ";
+        Boolean m_multi_screens = Settings.Default.multi_screens;
+        //Boolean m_multi_screens = GetSavedSettingValue 
+        //Boolean m_multi_screens = false;
 
         #endregion
 
@@ -82,6 +85,42 @@ namespace tua_tell_us_Josie
         TextBox LChangeTextFormTxt = new TextBox();
         TextBox RChangeTextFormTxt = new TextBox();
 
+        #endregion
+
+        #region SCREEN 2
+        Form LChangeTextFrm2 = new ChangeTextForm();
+        Form RChangeTextFrm2 = new ChangeTextForm();
+
+        //Panel ModePnl = new Panel();
+        Panel ContentPnl2 = new Panel();
+        Panel InfoPnl2 = new Panel();
+        Panel LBtnPnl2 = new Panel();
+        Panel RBtnPnl2 = new Panel();
+
+        Label ApplicationLbl2 = new Label();
+        Label UserLbl2 = new Label();
+        Label AnswerLbl2 = new Label();
+
+        PictureBox ApplicationIconPb2 = new PictureBox();
+        PictureBox QuitBtnPB2 = new PictureBox();
+
+        Button QuitBtn2 = new Button();
+        Button SettingsBtn2 = new Button();
+        Button ContentPanelResetBtn2= new Button();
+        Button LBtn2 = new Button();
+        Button LChangeTextBtn2 = new Button();
+        Button LResetBtn2 = new Button();
+        Button LChangeTextFormOKBtn2 = new Button();
+        Button LChangeTextFormCancelBtn2 = new Button();
+        Button RBtn2 = new Button();
+        Button RChangeTextBtn2 = new Button();
+        Button RResetBtn2 = new Button();
+        Button RChangeTextFormOKBtn2 = new Button();
+        Button RChangeTextFormCancelBtn2 = new Button();
+
+        TextBox LChangeTextFormTxt2 = new TextBox();
+        TextBox RChangeTextFormTxt2 = new TextBox();
+
 
         #endregion
 
@@ -124,6 +163,16 @@ namespace tua_tell_us_Josie
             RChangeTextBtn.Click += RChangeTextBtnClick;
             RResetBtn.Click += RResetBtnClick;
 
+            QuitBtn2.Click += QuitBtnClick;
+            SettingsBtn2.Click += SettingsBtnClick;
+            //ContentPanelResetBtn.Click += ContentPanelResetBtnClick;
+            LBtn2.Click += LBtnClick;
+            //LChangeTextBtn.Click += LChangeTextBtnClick;
+            //LResetBtn.Click += LResetBtnClick;
+            //RBtn.Click += RbtnClick;
+            //RChangeTextBtn.Click += RChangeTextBtnClick;
+            //RResetBtn.Click += RResetBtnClick;
+
             //handle key press
             this.KeyPreview = true;
             this.KeyPress += new KeyPressEventHandler(MainFormKeyDown);
@@ -138,7 +187,10 @@ namespace tua_tell_us_Josie
             form2 = new Form2();
 
             //check for a second screen
-            //ScreenCheck();
+            if (m_multi_screens == true)
+            {
+                ScreenCheck();
+            }
         }
              
 
@@ -570,33 +622,250 @@ namespace tua_tell_us_Josie
 
         }
 
-        //public void ScreenCheck()
-        //{
-        //    // get all the screens on the system
-        //    System.Windows.Forms.Screen[] screens = System.Windows.Forms.Screen.AllScreens;
+        public void ScreenCheck()
+        {
+            MessageBox.Show("running ScreenCheck()");
 
-        //    // if there is a second screen
-        //    if (screens.Length > 1)
-        //    {
-        //        // create a new form on the second screen
-        //        //Form2 form2 = new Form2();
-        //        form2.StartPosition = FormStartPosition.Manual;
-        //        form2.Location = screens[1].WorkingArea.Location;
-        //        form2.MaximizeBox = false;
-        //        form2.MinimizeBox = false;
-        //        form2.ControlBox = true;
-        //        form2.WindowState = FormWindowState.Maximized;
-        //        form2.FormBorderStyle = FormBorderStyle.FixedSingle;
-        //        form2.BackColor = MainFormBackcolorClr;
-        //        form2.AutoSize = false;
-        //        var Form2ScreenSize = new System.Drawing.Size(screens[1].Bounds.Width, screens[1].Bounds.Height);
-        //        form2.Size = new Size(Form2ScreenSize.Width, Form2ScreenSize.Height);
-        //        form2.Text = "tell us Josie";
-        //        form2.Icon = Resources.tua_icon;
+            // get all the screens on the system
+            System.Windows.Forms.Screen[] screens = System.Windows.Forms.Screen.AllScreens;
 
-        //        form2.Show();
-        //    }
-        //}
+            // if there is a second screen
+            if (screens.Length > 1)
+            {
+                //set up screen2 
+                form2.MaximizeBox = false;
+                form2.MinimizeBox = false;
+                form2.ControlBox = true;
+                form2.WindowState = FormWindowState.Normal;
+                form2.FormBorderStyle = FormBorderStyle.None;
+                form2.BackColor = MainFormBackcolorClr;
+                form2.AutoSize = false;
+                form2.StartPosition = FormStartPosition.Manual;
+                form2.Location = screens[1].WorkingArea.Location;
+                var Form2ScreenSize = new System.Drawing.Size(screens[1].Bounds.Width, screens[1].Bounds.Height);
+                form2.Size = new Size(Form2ScreenSize.Width, Form2ScreenSize.Height);
+                form2.Text = "tell us Josie";
+                form2.Icon = Resources.tua_icon;
+
+                //set up the screen2 content panel
+                int ContentPnlHeight2 = (int)(Form2ScreenSize.Height * .60);
+                ContentPnl2.SetBounds(10, 100, Form2ScreenSize.Width - 30, ContentPnlHeight2 - 80);
+                ContentPnl2.BorderStyle = BorderStyle.None;
+                ContentPnl2.BackColor = GrayPnlClr;
+                ContentPnl2.Visible = true;
+                form2.Controls.Add(ContentPnl2);
+
+                double AnswerLblDWidth2 = ContentPnl2.Width;
+                AnswerLbl2.Width = (int)Math.Truncate(AnswerLblDWidth2 - (AnswerLblDWidth2 * .05));
+                double AnswerLblDHeight2 = ContentPnl2.Height;
+                AnswerLbl2.Height = (int)Math.Truncate(AnswerLblDHeight2 - (AnswerLblDHeight2 * .18));
+                AnswerLbl2.Location = new Point(ContentPnl2.Width / 2 - AnswerLbl2.Width / 2, ContentPnl2.Width / 2 - AnswerLbl2.Width / 2);
+                AnswerLbl2.BackColor = Color.Transparent;
+                AnswerLbl2.Font = BtnStartFnt;
+                AnswerLbl2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                AnswerLbl2.Text = " ";
+                AnswerLbl2.AutoSize = false;
+                AnswerLbl2.Visible = true;
+                Label f_label = AnswerLbl2;
+                MakeLabelTextFit(f_label);
+                ContentPnl2.Controls.Add(AnswerLbl2);
+
+                // set up the info panel 
+                InfoPnl2.SetBounds(20, 10, ContentPnl2.Width - 40, 50);
+                InfoPnl2.BorderStyle = BorderStyle.None;
+                InfoPnl2.BackColor = System.Drawing.Color.Transparent;
+                InfoPnl2.Visible = true;
+
+                ApplicationLbl2.SetBounds((InfoPnl2.Width / 2) - 50, 10, 130, 30);
+                ApplicationIconPb2.SetBounds((InfoPnl2.Width / 2) - 85, 12, 30, 30);
+                UserLbl2.SetBounds(50, 10, 300, 30);
+
+                UserLbl2.Font = LabelBigFnt;
+                UserLbl2.Text = m_LicensedUser;
+                UserLbl2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+                UserLbl2.ForeColor = InfoPnlClr;
+                UserLbl2.BackColor = Color.Transparent;
+                UserLbl2.Visible = true;
+
+                ApplicationLbl2.Font = LabelMedFnt;
+                ApplicationLbl2.Text = "tell us Josie...";
+                ApplicationLbl2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+                ApplicationLbl2.ForeColor = InfoPnlClr;
+                ApplicationLbl2.BackColor = Color.Transparent;
+                ApplicationLbl2.Visible = true;
+
+                ApplicationIconPb2.Image = Resources.tua_better;
+                ApplicationIconPb2.BorderStyle = BorderStyle.None;
+                ApplicationIconPb2.SizeMode = PictureBoxSizeMode.StretchImage;
+                ApplicationIconPb2.Visible = true;
+
+                SettingsBtn2.SetBounds((InfoPnl2.Width - 130), 10, 50, 50);
+
+                QuitBtn2.SetBounds((InfoPnl2.Width - 70), 5, 45, 45);
+                QuitBtn2.BackColor = Color.Purple;
+                QuitBtn2.Visible = true;
+                QuitBtn2.FlatStyle = FlatStyle.Flat;
+                QuitBtn2.FlatAppearance.BorderSize = 0;
+                QuitBtn2.BackgroundImage = Resources.really_new_quit_button;
+                QuitBtn2.BackgroundImageLayout = ImageLayout.Zoom;
+                QuitBtn2.AutoSize = false;
+
+                form2.Controls.Add(InfoPnl2);
+                InfoPnl2.Controls.Add(ApplicationLbl2);
+                InfoPnl2.Controls.Add(ApplicationIconPb2);
+                InfoPnl2.Controls.Add(UserLbl2);
+                InfoPnl2.Controls.Add(QuitBtn2);
+
+                //set up the left button panel 2
+                int LBtnPnlWidth2 = (Form2ScreenSize.Width / 2) - 80;
+                int LBtnPnlHeight2 = (int)(Form2ScreenSize.Height * .40) - 80;
+                LBtnPnl2.SetBounds(30, (Form2ScreenSize.Height - (LBtnPnlHeight2 + 20)), LBtnPnlWidth2, LBtnPnlHeight2);
+                LBtnPnl2.BackColor = LBtnClr;
+                LBtnPnl2.Visible = true;
+                form2.Controls.Add(LBtnPnl2);
+
+                //set up the left button 2
+                double LBtnDWidth2 = LBtnPnlWidth2;
+                LBtn2.Width = (int)Math.Truncate(LBtnDWidth2 - (LBtnDWidth2 * .05));
+                double LBtnDHeight2 = LBtnPnlHeight2;
+                LBtn2.Height = (int)Math.Truncate(LBtnDHeight2 - (LBtnDHeight2 * .3));
+                LBtn2.Location = new Point((LBtnPnl2.Width / 2) - LBtn2.Width / 2, (LBtnPnl2.Width / 2) - LBtn2.Width / 2);
+                LBtn2.BackColor = LBtnClr;
+                LBtn2.Visible = true;
+                LBtn2.FlatStyle = FlatStyle.Flat;
+                LBtn2.FlatAppearance.BorderSize = 0;
+                LBtn2.Font = BtnStartFnt;
+                LBtn2.Text = LBtn.Text; 
+                LBtn2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                LBtn2.AutoSize = false;
+                Button f_button = LBtn2;
+                MakeButtonTextFit(f_button);
+                LBtnPnl2.Controls.Add(LBtn2);
+
+                //set up the left change text button
+                double LChangeTextBtnDWidth2 = LBtnPnlWidth2;
+                LChangeTextBtn2.Width = (int)Math.Truncate(LChangeTextBtnDWidth2 - (LChangeTextBtnDWidth2 * .3));
+                double LChangeTextBtnDHeight2 = LBtnPnlHeight2;
+                LChangeTextBtn2.Height = (int)Math.Truncate(LChangeTextBtnDHeight2 - (LChangeTextBtnDHeight2 * .85));
+                LChangeTextBtn2.Location = new Point(LBtn2.Location.X, LBtn2.Location.Y + LBtn2.Height + (int)Math.Truncate(LChangeTextBtnDHeight2 * .05));
+                LChangeTextBtn2.BackColor = LChangeTextBtnClr;
+                LChangeTextBtn2.Visible = true;
+                LChangeTextBtn2.FlatStyle = FlatStyle.Flat;
+                LChangeTextBtn2.FlatAppearance.BorderSize = 0;
+                LChangeTextBtn2.FlatAppearance.BorderColor = LChangeTextBtnClr;
+                LChangeTextBtn2.Font = BtnStartFnt;
+                LChangeTextBtn2.Text = "change text";
+                LChangeTextBtn2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                LChangeTextBtn2.AutoSize = false;
+                f_button = LChangeTextBtn2;
+                MakeButtonTextFit(f_button);
+                LBtnPnl2.Controls.Add(LChangeTextBtn2);
+
+                //set up the left reset button
+                double LResetBtnDWidth2 = LBtnPnlWidth2;
+                LResetBtn2.Width = (int)Math.Truncate(LResetBtnDWidth2 - (LResetBtnDWidth2 * .78));
+                double LResetBtnDHeight2 = LBtnPnlHeight2;
+                LResetBtn2.Height = LChangeTextBtn2.Height;
+                LResetBtn2.Location = new Point(LBtn2.Location.X + LChangeTextBtn2.Width + (int)Math.Truncate(LChangeTextBtn2.Width * .05), LChangeTextBtn2.Location.Y);
+                LResetBtn2.BackColor = LResetBtnClr;
+                LResetBtn2.Visible = true;
+                LResetBtn2.FlatStyle = FlatStyle.Flat;
+                LResetBtn2.FlatAppearance.BorderSize = 0;
+                LResetBtn2.FlatAppearance.BorderColor = LResetBtnClr;
+                LResetBtn2.Font = BtnStartFnt;
+                LResetBtn2.Text = "reset";
+                LResetBtn2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                LResetBtn2.AutoSize = false;
+                f_button = LResetBtn2;
+                MakeButtonTextFit(f_button);
+                LBtnPnl2.Controls.Add(LResetBtn2);
+
+                ////set up the right button panel
+                //int RBtnPnlWidth = (MainFormScreenSize.Width / 2) - 80;
+                //int RBtnPnlHeight = (int)(MainFormScreenSize.Height * .40) - 80;
+                //RBtnPnl.SetBounds((MainFormScreenSize.Width / 2) + 30, (MainFormScreenSize.Height - (RBtnPnlHeight + 20)), RBtnPnlWidth, RBtnPnlHeight);
+                //RBtnPnl.BackColor = RBtnClr;
+                //RBtnPnl.Visible = true;
+                //this.Controls.Add(RBtnPnl);
+
+                ////set up the right button
+                //double RBtnDWidth = RBtnPnlWidth;
+                //RBtn.Width = (int)Math.Truncate(RBtnDWidth - (RBtnDWidth * .05));
+                //double RBtnDHeight = RBtnPnlHeight;
+                //RBtn.Height = (int)Math.Truncate(RBtnDHeight - (RBtnDHeight * .3));
+                //RBtn.Location = new Point((RBtnPnl.Width / 2) - RBtn.Width / 2, (RBtnPnl.Width / 2) - RBtn.Width / 2);
+                //RBtn.BackColor = RBtnClr;
+                //RBtn.Visible = true;
+                //RBtn.FlatStyle = FlatStyle.Flat;
+                //RBtn.FlatAppearance.BorderSize = 0;
+                //RBtn.Font = BtnStartFnt;
+                //RBtn.Text = "no";
+                //RBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                //RBtn.AutoSize = false;
+                //f_button = RBtn;
+                //MakeButtonTextFit(f_button);
+                //RBtnPnl.Controls.Add(RBtn);
+
+                ////set up the right change text button
+                //double RChangeTextBtnDWidth = RBtnPnlWidth;
+                //RChangeTextBtn.Width = (int)Math.Truncate(RChangeTextBtnDWidth - (RChangeTextBtnDWidth * .3));
+                //double RChangeTextBtnDHeight = RBtnPnlHeight;
+                //RChangeTextBtn.Height = (int)Math.Truncate(RChangeTextBtnDHeight - (RChangeTextBtnDHeight * .85));
+                //RChangeTextBtn.Location = new Point(RBtn.Location.X, RBtn.Location.Y + RBtn.Height + (int)Math.Truncate(RChangeTextBtnDHeight * .05));
+                //RChangeTextBtn.BackColor = RChangeTextBtnClr;
+                //RChangeTextBtn.Visible = true;
+                //RChangeTextBtn.FlatStyle = FlatStyle.Flat;
+                //RChangeTextBtn.FlatAppearance.BorderSize = 0;
+                //RChangeTextBtn.FlatAppearance.BorderColor = RChangeTextBtnClr;
+                //RChangeTextBtn.Font = BtnStartFnt;
+                //RChangeTextBtn.Text = "change text";
+                //RChangeTextBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                //RChangeTextBtn.AutoSize = false;
+                //f_button = RChangeTextBtn;
+                //MakeButtonTextFit(f_button);
+                //RBtnPnl.Controls.Add(RChangeTextBtn);
+
+                ////set up the right reset button
+                //double RResetBtnDWidth = RBtnPnlWidth;
+                //RResetBtn.Width = (int)Math.Truncate(RResetBtnDWidth - (RResetBtnDWidth * .78));
+                //double RResetBtnDHeight = RBtnPnlHeight;
+                //RResetBtn.Height = RChangeTextBtn.Height;
+                //RResetBtn.Location = new Point(RBtn.Location.X + RChangeTextBtn.Width + (int)Math.Truncate(RChangeTextBtn.Width * .05), RChangeTextBtn.Location.Y);
+                //RResetBtn.BackColor = RResetBtnClr;
+                //RResetBtn.Visible = true;
+                //RResetBtn.FlatStyle = FlatStyle.Flat;
+                //RResetBtn.FlatAppearance.BorderSize = 0;
+                //RResetBtn.FlatAppearance.BorderColor = RResetBtnClr;
+                //RResetBtn.Font = BtnStartFnt;
+                //RResetBtn.Text = "reset";
+                //RResetBtn.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+                //RResetBtn.AutoSize = false;
+                //f_button = RResetBtn;
+                //MakeButtonTextFit(f_button);
+                //RBtnPnl.Controls.Add(RResetBtn);
+
+
+
+
+                //// create a new form on the second screen
+                ////Form2 form2 = new Form2();
+                //form2.StartPosition = FormStartPosition.Manual;
+                //form2.Location = screens[1].WorkingArea.Location;
+                //form2.MaximizeBox = false;
+                //form2.MinimizeBox = false;
+                //form2.ControlBox = true;
+                //form2.WindowState = FormWindowState.Maximized;
+                //form2.FormBorderStyle = FormBorderStyle.FixedSingle;
+                //form2.BackColor = MainFormBackcolorClr;
+                //form2.AutoSize = false;
+                //var Form2ScreenSize = new System.Drawing.Size(screens[1].Bounds.Width, screens[1].Bounds.Height);
+                //form2.Size = new Size(Form2ScreenSize.Width, Form2ScreenSize.Height);
+                //form2.Text = "tell us Josie";
+                //form2.Icon = Resources.tua_icon;
+
+                form2.Show();
+            }
+        }
 
 
 
@@ -678,6 +947,13 @@ namespace tua_tell_us_Josie
             MakeLabelTextFit(f_label);
             m_last_pressed = "L";
             ContentPnl.BackColor = LPressedClr;
+
+            AnswerLbl2.Font = BtnStartFnt;
+            AnswerLbl2.Text = LBtn.Text;
+            Label f_label2 = AnswerLbl2;
+            MakeLabelTextFit(f_label2);
+            ContentPnl2.BackColor = LPressedClr;
+
             SoundPlayer player = new SoundPlayer(Properties.Resources.disco_beat);
             player.Play();  
             WaitTimer.Start();
