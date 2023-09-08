@@ -68,6 +68,8 @@ namespace tua_tell_us_Josie
         Label ApplicationLbl = new Label();
         Label UserLbl = new Label();
         Label AnswerLbl = new Label();
+        Label SoundGroupBoxLbl = new Label();
+        Label MultiScreensGroupBoxLbl = new Label();
 
         PictureBox ApplicationIconPb = new PictureBox();
         PictureBox QuitBtnPB = new PictureBox();
@@ -90,6 +92,14 @@ namespace tua_tell_us_Josie
 
         TextBox LChangeTextFormTxt = new TextBox();
         TextBox RChangeTextFormTxt = new TextBox();
+
+        GroupBox SoundGrpBx = new GroupBox();
+        GroupBox MultiScreensGrpBx = new GroupBox(); 
+
+        RadioButton SoundYes = new RadioButton();
+        RadioButton SoundNo = new RadioButton();    
+        RadioButton MultiScreensYes = new RadioButton();
+        RadioButton MultiScreensNo = new RadioButton();
 
         #endregion
 
@@ -582,16 +592,63 @@ namespace tua_tell_us_Josie
             SettingsFrm.FormBorderStyle = FormBorderStyle.None;
             Control f_control3 = SettingsFrm;
             PaintThisControl(f_control3);
-            //SettingsFrm.Paint += SettingsFrmPaint;
+           
+            double MultiScreensGrpBxDWidth = SettingsFrm.Width;
+            MultiScreensGrpBx.Width = (int)Math.Truncate(MultiScreensGrpBxDWidth - (MultiScreensGrpBxDWidth * .75));
+            double MultiScreensGrpBxDHeight = SettingsFrm.Height;
+            MultiScreensGrpBx.Height = (int)Math.Truncate(SettingsFrm.Height - LResetBtn.Height - (MultiScreensGrpBxDHeight * .2));
+            MultiScreensGrpBx.BackColor = GrayPnlClr;
+            MultiScreensGroupBoxLbl.Width = (MultiScreensGrpBx.Width / 2);
+            MultiScreensGroupBoxLbl.Height = (MultiScreensGrpBx.Height / 6);
+            MultiScreensGroupBoxLbl.Location = new Point((int)Math.Truncate(MultiScreensGrpBx.ClientRectangle.X + (MultiScreensGrpBx.ClientRectangle.Width * .05)), (int)Math.Truncate(MultiScreensGrpBx.ClientRectangle.Y + (MultiScreensGrpBx.ClientRectangle.Height * .1)));
+            MultiScreensGroupBoxLbl.Font = BtnStartFnt;
+            MultiScreensGroupBoxLbl.Text = "Multi Screens:";
+            MultiScreensGroupBoxLbl.AutoSize = false;
+            MultiScreensGroupBoxLbl.BackColor = GrayPnlClr;
+            MultiScreensGroupBoxLbl.Visible = true;
+            MultiScreensGrpBx.AutoSize = false;
+            Label f_label = MultiScreensGroupBoxLbl;
+            MakeLabelTextFit(f_label);
+            MultiScreensYes.Font = MultiScreensGroupBoxLbl.Font;
+            MultiScreensYes.Text = "ON";
+            MultiScreensNo.Font = MultiScreensGroupBoxLbl.Font;
+            MultiScreensNo.Text = "OFF";
+            if (Settings.Default.multi_screens = true)
+            {
+                MultiScreensYes.Checked = true;
+                MultiScreensNo.Checked = false;
+            }
+            else
+            {
+                MultiScreensYes.Checked = false;
+                MultiScreensNo.Checked = true;
+            }
+            MultiScreensGrpBx.Controls.Add(MultiScreensGroupBoxLbl);
+            MultiScreensGrpBx.Controls.Add(MultiScreensYes);
+            MultiScreensGrpBx.Controls.Add(MultiScreensNo);
+            Control f_control5 = MultiScreensGrpBx;
+            PaintThisControl(f_control5);
 
-            //double ChangeTextTxtDWidth = LChangeTextFrm.Width;
-            //LChangeTextFormTxt.Width = (int)Math.Truncate(ChangeTextTxtDWidth - (ChangeTextTxtDWidth * .25));
-            //LChangeTextFormTxt.Font = BtnStartFnt;
-            //TextBox f_text = LChangeTextFormTxt;
-            //Form f_form = LChangeTextFrm;
-            //SetTextBoxFont(f_text, f_form);
-            //LChangeTextFormTxt.Location = new Point(LChangeTextFrm.Width / 2 - LChangeTextFormTxt.Width / 2, (LChangeTextFrm.Height / 2) - (LChangeTextFormTxt.Height) / 2);
-            //LChangeTextFrm.Controls.Add(LChangeTextFormTxt);
+            SoundGrpBx.Width = MultiScreensGrpBx.Width;
+            SoundGrpBx.Height = MultiScreensGrpBx.Height;   
+            SoundGrpBx.BackColor = GrayPnlClr;
+            SoundGroupBoxLbl.Width = MultiScreensGroupBoxLbl.Width;
+            SoundGroupBoxLbl.Height = MultiScreensGroupBoxLbl.Height;
+            SoundGroupBoxLbl.Location = new Point(MultiScreensGroupBoxLbl.Location.X, MultiScreensGroupBoxLbl.Location.Y);
+            SoundGroupBoxLbl.Font = MultiScreensGroupBoxLbl.Font;
+            SoundGroupBoxLbl.Text = "Sounds:";
+            SoundGroupBoxLbl.AutoSize = false;
+            SoundGroupBoxLbl.BackColor = GrayPnlClr;
+            SoundGroupBoxLbl.Visible = true;
+            SoundGrpBx.AutoSize = false;
+            SoundGrpBx.Controls.Add(SoundGroupBoxLbl);
+            Control f_control4 = SoundGrpBx;
+            PaintThisControl(f_control4);
+
+            MultiScreensGrpBx.Location = new Point((int)Math.Truncate(SettingsFrm.ClientRectangle.X + MultiScreensGrpBxDWidth * .01), (int)Math.Truncate(SettingsFrm.ClientRectangle.Y + MultiScreensGrpBxDHeight * .05));
+            SoundGrpBx.Location = new Point((int)Math.Truncate(MultiScreensGrpBx.Location.X + MultiScreensGrpBx.Width + SettingsFrm.Width * .01), MultiScreensGrpBx.Location.Y);
+            SettingsFrm.Controls.Add(MultiScreensGrpBx);
+            SettingsFrm.Controls.Add(SoundGrpBx);
 
             SettingsFormOKBtn.Width = LResetBtn.Width;
             SettingsFormOKBtn.Height = LResetBtn.Height;
@@ -636,8 +693,6 @@ namespace tua_tell_us_Josie
             SettingsFrm.CancelButton = SettingsFormCancelBtn;
             SettingsFrm.Controls.Add(SettingsFormOKBtn);
             SettingsFrm.Controls.Add(SettingsFormCancelBtn);
-
-
         }
 
         #endregion
@@ -977,22 +1032,6 @@ namespace tua_tell_us_Josie
                 MakeButtonTextFit(f_button);
                 RBtnPnl2.Controls.Add(RResetBtn2);
 
-                //// create a new form on the second screen
-                ////Form2 form2 = new Form2();
-                //form2.StartPosition = FormStartPosition.Manual;
-                //form2.Location = screens[1].WorkingArea.Location;
-                //form2.MaximizeBox = false;
-                //form2.MinimizeBox = false;
-                //form2.ControlBox = true;
-                //form2.WindowState = FormWindowState.Maximized;
-                //form2.FormBorderStyle = FormBorderStyle.FixedSingle;
-                //form2.BackColor = MainFormBackcolorClr;
-                //form2.AutoSize = false;
-                //var Form2ScreenSize = new System.Drawing.Size(screens[1].Bounds.Width, screens[1].Bounds.Height);
-                //form2.Size = new Size(Form2ScreenSize.Width, Form2ScreenSize.Height);
-                //form2.Text = "tell us Josie";
-                //form2.Icon = Resources.tua_icon;
-
                 form2.Show();
             }
         }
@@ -1031,6 +1070,21 @@ namespace tua_tell_us_Josie
             }
             f_button.Font = font;
         }
+
+        private void MakeGroupBoxTextFit(GroupBox f_groupbox)
+        {
+            string text = f_groupbox.Text;
+            Font font = f_groupbox.Font;
+
+            float fontSize = font.Size;
+            while ((TextRenderer.MeasureText(text, font).Width <= f_groupbox.Width /2) & (TextRenderer.MeasureText(text, font).Height <= f_groupbox.Height / 10))
+            {
+                fontSize++;
+                font = new Font(font.FontFamily, fontSize, font.Style);
+            }
+            f_groupbox.Font = font;
+        }
+
 
         private void PaintThisControl(Control f_control)
         {
