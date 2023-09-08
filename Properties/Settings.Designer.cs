@@ -34,5 +34,17 @@ namespace tua_tell_us_Josie.Properties {
                 this["multi_screens"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool sound {
+            get {
+                return ((bool)(this["sound"]));
+            }
+            set {
+                this["sound"] = value;
+            }
+        }
     }
 }

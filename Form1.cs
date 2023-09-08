@@ -594,12 +594,12 @@ namespace tua_tell_us_Josie
             PaintThisControl(f_control3);
            
             double MultiScreensGrpBxDWidth = SettingsFrm.Width;
-            MultiScreensGrpBx.Width = (int)Math.Truncate(MultiScreensGrpBxDWidth - (MultiScreensGrpBxDWidth * .75));
+            MultiScreensGrpBx.Width = (int)Math.Truncate(MultiScreensGrpBxDWidth - (MultiScreensGrpBxDWidth * .8));
             double MultiScreensGrpBxDHeight = SettingsFrm.Height;
-            MultiScreensGrpBx.Height = (int)Math.Truncate(SettingsFrm.Height - LResetBtn.Height - (MultiScreensGrpBxDHeight * .2));
+            MultiScreensGrpBx.Height = (int)Math.Truncate(SettingsFrm.Height - LResetBtn.Height - (MultiScreensGrpBxDHeight * .3));
             MultiScreensGrpBx.BackColor = GrayPnlClr;
-            MultiScreensGroupBoxLbl.Width = (MultiScreensGrpBx.Width / 2);
-            MultiScreensGroupBoxLbl.Height = (MultiScreensGrpBx.Height / 6);
+            MultiScreensGroupBoxLbl.Width = (MultiScreensGrpBx.Width - (int)Math.Truncate(MultiScreensGrpBx.Width * .1 ));
+            MultiScreensGroupBoxLbl.Height = ((int)Math.Truncate(MultiScreensGrpBx.Height * .25));
             MultiScreensGroupBoxLbl.Location = new Point((int)Math.Truncate(MultiScreensGrpBx.ClientRectangle.X + (MultiScreensGrpBx.ClientRectangle.Width * .05)), (int)Math.Truncate(MultiScreensGrpBx.ClientRectangle.Y + (MultiScreensGrpBx.ClientRectangle.Height * .1)));
             MultiScreensGroupBoxLbl.Font = BtnStartFnt;
             MultiScreensGroupBoxLbl.Text = "Multi Screens:";
@@ -609,11 +609,20 @@ namespace tua_tell_us_Josie
             MultiScreensGrpBx.AutoSize = false;
             Label f_label = MultiScreensGroupBoxLbl;
             MakeLabelTextFit(f_label);
+            
             MultiScreensYes.Font = MultiScreensGroupBoxLbl.Font;
             MultiScreensYes.Text = "ON";
+            MultiScreensYes.Visible = true;
+            MultiScreensYes.AutoSize = true;
+            MultiScreensYes.Location = new Point((int)Math.Truncate(MultiScreensGrpBx.ClientRectangle.X + (MultiScreensGrpBx.ClientRectangle.Width * .35)), MultiScreensGroupBoxLbl.Location.Y + MultiScreensGroupBoxLbl.Height + (int)Math.Truncate(MultiScreensGrpBx.Height * .1 ));
+
             MultiScreensNo.Font = MultiScreensGroupBoxLbl.Font;
             MultiScreensNo.Text = "OFF";
-            if (Settings.Default.multi_screens = true)
+            MultiScreensNo.Visible = true;
+            MultiScreensNo.AutoSize = true;
+            MultiScreensNo.Location = new Point(MultiScreensYes.Location.X, (int)Math.Truncate((MultiScreensYes.Location.Y * 1.5)));
+            
+            if (Settings.Default.multi_screens == true)
             {
                 MultiScreensYes.Checked = true;
                 MultiScreensNo.Checked = false;
@@ -641,7 +650,37 @@ namespace tua_tell_us_Josie
             SoundGroupBoxLbl.BackColor = GrayPnlClr;
             SoundGroupBoxLbl.Visible = true;
             SoundGrpBx.AutoSize = false;
+            //SoundGrpBx.Controls.Add(SoundGroupBoxLbl);
+            //Control f_control4 = SoundGrpBx;
+            //PaintThisControl(f_control4);
+
+            SoundYes.Font = MultiScreensGroupBoxLbl.Font;
+            SoundYes.Text = "ON";
+            SoundYes.Visible = true;
+            SoundYes.AutoSize = true;
+            SoundYes.Location = new Point(MultiScreensYes.Location.X, MultiScreensYes.Location.Y);
+            //MultiScreensYes.Location = new Point((int)Math.Truncate(MultiScreensGrpBx.ClientRectangle.X + (MultiScreensGrpBx.ClientRectangle.Width * .35)), MultiScreensGroupBoxLbl.Location.Y + MultiScreensGroupBoxLbl.Height + (int)Math.Truncate(MultiScreensGrpBx.Height * .1));
+
+            SoundNo.Font = MultiScreensGroupBoxLbl.Font;
+            SoundNo.Text = "OFF";
+            SoundNo.Visible = true;
+            SoundNo.AutoSize = true;
+            SoundNo.Location = new Point(MultiScreensNo.Location.X, MultiScreensNo.Location.Y);
+            //MultiScreensNo.Location = new Point(MultiScreensYes.Location.X, (int)Math.Truncate((MultiScreensYes.Location.Y * 1.5)));
+
+            if (Settings.Default.sound == true)
+            {
+                SoundYes.Checked = true;
+                SoundNo.Checked = false;
+            }
+            else
+            {
+                SoundYes.Checked = false;
+                SoundNo.Checked = true;
+            }
             SoundGrpBx.Controls.Add(SoundGroupBoxLbl);
+            SoundGrpBx.Controls.Add(SoundYes);
+            SoundGrpBx.Controls.Add(SoundNo);
             Control f_control4 = SoundGrpBx;
             PaintThisControl(f_control4);
 
@@ -1122,6 +1161,38 @@ namespace tua_tell_us_Josie
         {
             SettingsFrm.Select();
             SettingsFrm.ShowDialog();
+
+            if(SettingsFrm.DialogResult == DialogResult.OK)
+            {
+                if(MultiScreensYes.Checked == true)
+                {
+                    Settings.Default.multi_screens = true;
+                    ScreenCheck();
+                }
+                else
+                {
+                    Settings.Default.multi_screens = false;
+                    form2.Close();
+                }
+
+                if(SoundYes.Checked == true)
+                {
+                    Settings.Default.sound = true;
+                }    
+                else
+                {
+                    Settings.Default.sound = false;
+                }
+
+                Settings.Default.Save();
+                SettingsFrm.Visible = false;
+                                    
+            }
+            else
+            {
+                SettingsFrm.Visible = false;
+            }
+
         }
 
         private void QuitBtnClick(object sender, EventArgs e)
@@ -1158,8 +1229,11 @@ namespace tua_tell_us_Josie
             MakeLabelTextFit(f_label2);
             ContentPnl2.BackColor = LPressedClr;
 
-            SoundPlayer player = new SoundPlayer(Properties.Resources.disco_beat);
-            player.Play();  
+            if (Settings.Default.sound == true)
+            {
+                SoundPlayer player = new SoundPlayer(Properties.Resources.disco_beat);
+                player.Play();
+            }    
             WaitTimer.Start();
             
         }
@@ -1220,8 +1294,11 @@ namespace tua_tell_us_Josie
             MakeLabelTextFit(f_label2);
             ContentPnl2.BackColor = RPressedClr;
 
-            SoundPlayer player = new SoundPlayer(Properties.Resources.rock_beat);
-            player.Play();
+            if (Settings.Default.sound == true)
+            {
+                SoundPlayer player = new SoundPlayer(Properties.Resources.rock_beat);
+                player.Play();
+            }
             WaitTimer.Start();
         }
 
