@@ -1167,7 +1167,7 @@ namespace tua_tell_us_Josie
                 if(MultiScreensYes.Checked == true)
                 {
                     Settings.Default.multi_screens = true;
-                    ScreenCheck();
+                    //ScreenCheck();
                 }
                 else
                 {
