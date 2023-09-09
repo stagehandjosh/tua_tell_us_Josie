@@ -1164,32 +1164,25 @@ namespace tua_tell_us_Josie
 
             if(SettingsFrm.DialogResult == DialogResult.OK)
             {
-                if(MultiScreensYes.Checked == true)
-                {
-                    Settings.Default.multi_screens = true;
-                    //ScreenCheck();
-                }
-                else
-                {
-                    Settings.Default.multi_screens = false;
-                    form2.Close();
-                }
+                //deal with sound result
+                if (SoundYes.Checked == true){Settings.Default.sound = true;} else {Settings.Default.sound = false;}
 
-                if(SoundYes.Checked == true)
-                {
-                    Settings.Default.sound = true;
-                }    
-                else
-                {
-                    Settings.Default.sound = false;
-                }
+                //deal with multi screens result
+                if (MultiScreensYes.Checked == true){ Settings.Default.multi_screens = true;} else {Settings.Default.multi_screens = false;}
 
+                //now save all the settings           
                 Settings.Default.Save();
-                SettingsFrm.Visible = false;
+
+                //now reload program to deal with change in multi screens
+                Application.Restart();
                                     
             }
             else
+            //result is cancel - so reset the radiobuttons to match the saved settings
             {
+                if(Settings.Default.sound == true) { SoundYes.Checked = true; SoundNo.Checked = false; } else { SoundYes.Checked = false; SoundNo.Checked = true; }
+                if(Settings.Default.multi_screens == true ) { MultiScreensYes.Checked = true; MultiScreensNo.Checked = false; } else { MultiScreensYes.Checked = false; MultiScreensNo.Checked = true; }
+
                 SettingsFrm.Visible = false;
             }
 
